@@ -1,9 +1,6 @@
 gsap.registerPlugin(ScrollTrigger)
 const sequenceContainer = document.getElementById('sequenceContainer');
-const canvas = document.getElementById('sequence-canvas');
-const context = canvas.getContext('2d');
-const frameCount = 189;
-const img = new Image();
+const video = document.querySelector('video');
 const setting = document.querySelector('.setting button');
 
 setting.addEventListener('click', () => {
@@ -16,7 +13,7 @@ const scene1 = gsap.timeline({
         pin: true,
         start: "top top",
         scrub: 1,
-        onUpdate: (e) => paintFrame(e)
+        onUpdate: (e) => seedVideoFrame(e)
     }
 });
 
@@ -50,39 +47,7 @@ scene2.to('.text-block.first .pin-head', { duration: 0.5, x: '0%', opacity: 1, e
     .to('.text-block.fifth .pin-head', { duration: 3.1, x: '0%', opacity: 1, ease: "power3.inOut" }, 'scene-in-4')
 
 
-function getCurrentFrame(index) {
-    return `/sequence/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
+function seedVideoFrame(scrollData) {
+    let videoFrame = ((scrollData.progress - 0.05) * 10).toFixed(3)
+    video.currentTime = videoFrame;
 }
-
-function preloadImages() {
-    for (let i = 1; i < frameCount; i++) {
-        const img = new Image();
-        img.src = getCurrentFrame(i);
-    }
-}
-
-function updateFrame(index) {
-    img.src = getCurrentFrame(index);
-    context.drawImage(img, 0, 0, 1280, 720);
-}
-
-function paintFrame(scrollData) {
-    let currentFrameIndex = Math.ceil((scrollData.start * scrollData.progress) * 0.3) || 1;
-    if (currentFrameIndex <= frameCount) {
-        requestAnimationFrame(() => updateFrame(currentFrameIndex));
-    }
-}
-
-function initCanvas() {
-    img.src = getCurrentFrame(1);
-    canvas.width = 1280;
-    canvas.height = 720;
-    img.onload = function () {
-        context.drawImage(img, 0, 0, 1280, 720);
-    }
-}
-
-initCanvas();
-preloadImages();
-
-console.log(location.hostname, "hostname")
