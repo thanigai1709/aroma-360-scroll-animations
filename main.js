@@ -82,6 +82,7 @@ function initCanvas() {
     }
 }
 
-preloadImages();
 initCanvas();
+preloadImages();
+
 console.log(location.hostname, "hostname")
