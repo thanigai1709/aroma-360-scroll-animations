@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.wrapper {
+    font-size: 16px;
+    background-color: black;
+}
+
+.spacer {
+    display: flex;
+    height: 100vh;
+    background-color: black;
+    width: 100%;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-size: 6em;
+}
+
+.video-section canvas {
+    max-width: 100%;
+    max-height: 100%;
+
+
+}
+
+.video-section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.canvas-wrapper {
+    position: relative;
+    max-width: 1280px;
+    margin: auto;
+}
+
+.text-1,
+.text-2,
+.text-3 {
+    position: absolute;
+    font-size: 2em;
+    color: white;
+
+}
+
+.text-1 {
+    top: 0;
+    overflow: hidden;
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.text-block {
+    position: absolute;
+    overflow: hidden;
+}
+
+.text-block__content {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    row-gap: 0.5em;
+    max-width: 19em;
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.text-block__content p {
+    opacity: 0.8;
+}
+
+.pin-head-container {
+    width: 33em;
+    display: flex;
+    overflow: hidden;
+    height: 10px;
+    margin-bottom: 0.5em;
+}
+
+.pin-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.pin-head::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #6e6e73;
+    right: 0;
+    border-radius: 50px;
+}
+
+.pin-head::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: #6e6e73;
+}
+
+.text-block.first {
+    top: 15%;
+    left: 0;
+}
+
+.text-block.second {
+    top: 57%;
+    right: 0;
+}
+
+.text-block.third {
+    top: 20%;
+    left: 0%;
+}
+
+.text-block.third .pin-head-container {
+    width: 30em;
+}
+
+.text-block.fourth {
+    top: 8%;
+    right: 0%;
+}
+
+.text-block.fifth {
+    top: 60%;
+    left: 0%;
+}
+
+.text-block:nth-of-type(even) .text-block__content {
+    margin-left: auto;
+}
+
+.text-block:nth-of-type(even) .pin-head {
+    transform: translateX(100%);
+}
+
+.text-block:nth-of-type(even) .pin-head::before {
+    left: 0;
+}
