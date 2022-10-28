@@ -51,7 +51,7 @@ scene2.to('.text-block.first .pin-head', { duration: 0.5, x: '0%', opacity: 1, e
 
 
 function getCurrentFrame(index) {
-    return `http://127.0.0.1:5500/sequence/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
+    return `/sequence/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
 }
 
 function preloadImages() {
@@ -84,3 +84,4 @@ function initCanvas() {
 
 preloadImages();
 initCanvas();
+console.log(location.hostname, "hostname")
