@@ -48,6 +48,11 @@ scene2.to('.text-block.first .pin-head', { duration: 0.5, x: '0%', opacity: 1, e
 
 
 function seedVideoFrame(scrollData) {
-    let videoFrame = ((scrollData.progress - 0.05) * 10).toFixed(3)
-    video.currentTime = videoFrame;
+    let videoFrame = ((scrollData.progress - 0.05) * 10).toFixed(3);
+    requestAnimationFrame(() => {
+        console.log("working...")
+        video.currentTime = videoFrame;
+    });
 }
+
+
