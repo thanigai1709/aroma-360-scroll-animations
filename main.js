@@ -4,7 +4,11 @@ const canvas = document.getElementById('sequence-canvas');
 const context = canvas.getContext('2d');
 const frameCount = 189;
 const img = new Image();
+const setting = document.querySelector('.setting button');
 
+setting.addEventListener('click', () => {
+    document.querySelectorAll('.pin-head').forEach(el => el.style.display = "none");
+})
 
 const scene1 = gsap.timeline({
     scrollTrigger: {

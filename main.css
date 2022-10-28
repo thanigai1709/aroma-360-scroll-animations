@@ -152,3 +152,14 @@
 .text-block:nth-of-type(even) .pin-head::before {
     left: 0;
 }
+
+.setting {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+}
+
+.setting button {
+    padding: 14px;
+}
