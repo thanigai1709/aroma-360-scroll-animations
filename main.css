@@ -40,7 +40,7 @@
 .canvas-wrapper {
     position: relative;
     max-width: 1280px;
-    margin: auto;
+    margin-inline: 18px;
 }
 
 .text-1,
@@ -168,4 +168,95 @@ video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+@media screen and (max-width:1024px) {
+    .wrapper {
+        font-size: 12px;
+    }    
+}
+
+@media screen and (max-width:824px) {
+    .wrapper {
+        font-size: 10px;
+    }    
+
+    .text-block{
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        overflow: unset;
+        align-items: center;
+    }
+
+    .text-block__content{
+        margin-inline: auto;
+    }
+
+    .text-block.first{
+        top: -25%;
+        flex-direction: column-reverse;
+        left: 0;
+        right: 0;
+        align-items: center;
+    }
+
+    .text-block .pin-head-container{
+        width: 12vh;
+        position: absolute;
+        rotate: 90deg;
+        bottom: -10vh;    
+    }
+
+    .text-block.second{
+        top: unset;
+        right: 0;
+        left: 0;
+        margin-inline: auto;
+    }
+
+    .text-block.second .pin-head-container{
+        top: -10vh;
+        margin-left: 10%;
+    }
+
+    .text-block.fourth{
+        top: -17vh;
+        left: 0;
+        right: 0;
+    }
+
+    .text-block.fourth .pin-head-container{
+        rotate: 270deg;        
+    }
+
+    .text-block.third{
+        top: unset;
+        right: 0;
+        left: 0;
+        margin-inline: auto;
+    }
+
+    .text-block.third .pin-head-container{
+        width: 12vh;
+        top: -8vh;
+        rotate: 270deg;
+    }
+
+    .text-block.fifth{
+        top: unset;
+        left: 0;
+        right: 0;
+    }
+
+    .text-block.fifth .pin-head-container{
+        rotate: 270deg;
+        top: -8vh;
+    }
+}
+@media screen and (max-width:500px) 
+{
+    video{
+        height: 330px;
+    }
 }
