@@ -10,7 +10,7 @@ let animation = lottie.loadAnimation({
     autoplay: false,
     path: 'aroma.json'
 });
-
+let previousEndFrame = 0;
 let screenSize = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
 setting.addEventListener('click', () => {
@@ -60,14 +60,39 @@ if (screenSize > 824) {
 }
 
 
+let swiper = new Swiper(".product-part-slider", {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    navigation: {
+        nextEl: ".slider-controls__next",
+        prevEl: ".slider-controls__prev",
+    },
+});
 
+swiper.on('slideChangeTransitionEnd', function (e) {
+    let activeSlide = document.querySelector('.swiper-slide.swiper-slide-active');
+    let playFrom = previousEndFrame;
+    let playUntill = Number(activeSlide.getAttribute('data-target-frame'));
+    playAnimationSegment(playFrom, playUntill);
+    previousEndFrame = playUntill;
+});
 
 function seedVideoFrame(scrollData) {
     let progress = scrollData.progress;
     let totolFrames = animation.totalFrames - 1;
-    let setAnimationFrameTo = (progress * totolFrames) < 0 ? 0 : progress * totolFrames;
-    console.log(setAnimationFrameTo, "current animation frame");
+    let animationFrame = (progress * totolFrames) < 0 ? 0 : progress * totolFrames;
+    setAnimationFrameTo(animationFrame);
+    console.log(animationFrame, "current animation frame");
+}
+
+function setAnimationFrameTo(frame) {
     requestAnimationFrame(() => {
-        animation.goToAndStop(setAnimationFrameTo, true)
-    })
+        animation.goToAndStop(frame, true)
+    });
+}
+
+function playAnimationSegment(from, to) {
+    requestAnimationFrame(() => {
+        animation.playSegments([from, to], true);
+    });
 }
