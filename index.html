@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js" integrity="sha512-yAr4fN9WZH6hESbOwoFZGtSgOP+LSZbs/JeoDr02pOX4yUFfI++qC9YwIQXIGffhnzliykJtdWTV/v3PxSz8aw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="main.js" defer></script>
 </head>
 
@@ -16,10 +17,13 @@
     <main class="wrapper">
         <section class="spacer" id="trigger">
             Section 1
+            <!-- <div id="lottie-player"></div> -->
         </section>
         <section class="video-section" id="sequenceContainer">
-            <div class="canvas-wrapper">
-                <video src="./video.mp4" preload="auto"></video>
+            <div class="canvas-wrapper">          
+                <div>
+                    <div id="lottie-player"></div>
+                </div>
                 <div class="text-block first">
                     <span class="pin-head-container">
                         <span class="pin-head"></span>

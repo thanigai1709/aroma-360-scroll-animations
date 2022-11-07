@@ -141,15 +141,15 @@
     left: 0%;
 }
 
-.text-block:nth-of-type(even) .text-block__content {
+.text-block:nth-of-type(odd) .text-block__content {
     margin-left: auto;
 }
 
-.text-block:nth-of-type(even) .pin-head {
+.text-block:nth-of-type(odd) .pin-head {
     transform: translateX(100%);
 }
 
-.text-block:nth-of-type(even) .pin-head::before {
+.text-block:nth-of-type(odd) .pin-head::before {
     left: 0;
 }
 
@@ -179,17 +179,21 @@ video {
 @media screen and (max-width:824px) {
     .wrapper {
         font-size: 10px;
-    }    
+    }  
 
     .text-block{
+        display: none;
+    }
+
+    /* .text-block{
         display: flex;
         text-align: center;
         flex-direction: column;
         overflow: unset;
         align-items: center;
-    }
+    } */
 
-    .text-block__content{
+    /* .text-block__content{
         margin-inline: auto;
     }
 
@@ -252,11 +256,12 @@ video {
     .text-block.fifth .pin-head-container{
         rotate: 270deg;
         top: -8vh;
-    }
+    } */
 }
-@media screen and (max-width:500px) 
+@media screen and (max-width:600px) 
 {
-    video{
-        height: 330px;
-    }
+
+    /* #lottie-player{
+        height: 760px;
+    } */
 }
