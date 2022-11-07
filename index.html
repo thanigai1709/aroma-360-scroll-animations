@@ -1,94 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
-    <script src="main.js" defer></script>
-</head>
-
-<body>
-    <main class="wrapper">
-        <section class="spacer" id="trigger">
-            Section 1
-        </section>
-        <section class="video-section" id="sequenceContainer">
-            <div class="canvas-wrapper">
-                <video src="./video.mp4" preload="auto"></video>
-                <div class="text-block first">
-                    <span class="pin-head-container">
-                        <span class="pin-head"></span>
-                    </span>
-                    <div class="text-block__content">
-                        <h1>LCD Display</h1>
-                        <p>
-                            There are many variations of passages of Lorem Ipsum available, but the majority have
-                            suffered alteration in some form
-                        </p>
-                    </div>
-                </div>
-                <div class="text-block second">
-                    <span class="pin-head-container">
-                        <span class="pin-head"></span>
-                    </span>
-                    <div class="text-block__content">
-                        <h1>Built In Speakers</h1>
-                        <p>
-                            There are many variations of passages of Lorem Ipsum available, but the majority have
-                            suffered alteration in some form
-                        </p>
-                    </div>
-                </div>
-                <div class="text-block third">
-                    <span class="pin-head-container">
-                        <span class="pin-head"></span>
-                    </span>
-                    <div class="text-block__content">
-                        <h1>Sleek Design</h1>
-                        <p>
-                            There are many variations of passages of Lorem Ipsum available, but the majority have
-                            suffered alteration in some form
-                        </p>
-                    </div>
-                </div>
-                <div class="text-block fourth">
-                    <span class="pin-head-container">
-                        <span class="pin-head"></span>
-                    </span>
-                    <div class="text-block__content">
-                        <h1>Scent Diffuser</h1>
-                        <p>
-                            There are many variations of passages of Lorem Ipsum available, but the majority have
-                            suffered alteration in some form
-                        </p>
-                    </div>
-                </div>
-                <div class="text-block fifth">
-                    <span class="pin-head-container">
-                        <span class="pin-head"></span>
-                    </span>
-                    <div class="text-block__content">
-                        <h1>2 Scent cartridges</h1>
-                        <p>
-                            There are many variations of passages of Lorem Ipsum available, but the majority have
-                            suffered alteration in some form
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="spacer">
-            Section 2
-        </section>
-    </main>
-    <div class="setting">
-        <button>Click to Disable Lines</button>
-    </div>
-</body>
-
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+		<link rel="stylesheet" href="main.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"
+			integrity="sha512-yAr4fN9WZH6hESbOwoFZGtSgOP+LSZbs/JeoDr02pOX4yUFfI++qC9YwIQXIGffhnzliykJtdWTV/v3PxSz8aw=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+		<script src="main.js" defer></script>
+	</head>
+	<body>
+		<main class="wrapper">
+			<section class="spacer" id="trigger">
+				Section 1
+				<!-- <div id="lottie-player"></div> -->
+			</section>
+			<section class="video-section" id="sequenceContainer">
+				<div class="canvas-wrapper">
+					<div>
+						<div id="lottie-player"></div>
+					</div>
+					<div class="text-block first">
+						<span class="pin-head-container">
+							<span class="pin-head"></span>
+						</span>
+						<div class="text-block__content">
+							<h1>LCD Display</h1>
+							<p>
+								There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+								alteration in some form
+							</p>
+						</div>
+					</div>
+					<div class="text-block second">
+						<span class="pin-head-container">
+							<span class="pin-head"></span>
+						</span>
+						<div class="text-block__content">
+							<h1>Built In Speakers</h1>
+							<p>
+								There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+								alteration in some form
+							</p>
+						</div>
+					</div>
+					<div class="text-block third">
+						<span class="pin-head-container">
+							<span class="pin-head"></span>
+						</span>
+						<div class="text-block__content">
+							<h1>Sleek Design</h1>
+							<p>
+								There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+								alteration in some form
+							</p>
+						</div>
+					</div>
+					<div class="text-block fourth">
+						<span class="pin-head-container">
+							<span class="pin-head"></span>
+						</span>
+						<div class="text-block__content">
+							<h1>Scent Diffuser</h1>
+							<p>
+								There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+								alteration in some form
+							</p>
+						</div>
+					</div>
+					<div class="text-block fifth">
+						<span class="pin-head-container">
+							<span class="pin-head"></span>
+						</span>
+						<div class="text-block__content">
+							<h1>2 Scent cartridges</h1>
+							<p>
+								There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+								alteration in some form
+							</p>
+						</div>
+					</div>
+					<div class="product-slider-wrapper">
+						<div class="swiper product-part-slider">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide" data-target-frame="10">
+									<div class="slider-content">
+										<h1>LCD Display</h1>
+										<p>
+											There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+											alteration in some form
+										</p>
+									</div>
+								</div>
+								<div class="swiper-slide" data-target-frame="15">
+									<div class="slider-content">
+										<h1>Built In Speakers</h1>
+										<p>
+											There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+											alteration in some form
+										</p>
+									</div>
+								</div>
+								<div class="swiper-slide" data-target-frame="68">
+									<div class="slider-content">
+										<h1>Scent Diffuser</h1>
+										<p>
+											There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+											alteration in some form
+										</p>
+									</div>
+								</div>
+								<div class="swiper-slide" data-target-frame="86">
+									<div class="slider-content">
+										<h1>Sleek Design</h1>
+										<p>
+											There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+											alteration in some form
+										</p>
+									</div>
+								</div>
+								<div class="swiper-slide" data-target-frame="279">
+									<div class="slider-content">
+										<h1>2 Scent cartridges</h1>
+										<p>
+											There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+											alteration in some form
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                        <div class="slider-controls">
+                            <button class="slider-controls__prev">< Prev</button>
+                            <button class="slider-controls__next">Next ></button>
+                        </div>
+					</div>
+				</div>
+			</section>
+			<section class="spacer">Section 2</section>
+		</main>
+		<div class="setting">
+			<button>Click to Disable Lines</button>
+		</div>
+	</body>
 </html>
