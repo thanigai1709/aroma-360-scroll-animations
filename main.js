@@ -8,7 +8,7 @@ let animation = lottie.loadAnimation({
     renderer: 'svg',
     loop: false,
     autoplay: false,
-    path: 'aroma.json'
+    path: 'kiosk-animation-final.json'
 });
 let previousEndFrame = 0;
 let screenSize = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -79,7 +79,7 @@ swiper.on('slideChangeTransitionEnd', function (e) {
 
 function seedVideoFrame(scrollData) {
     let progress = scrollData.progress;
-    let totolFrames = animation.totalFrames - 1;
+    let totolFrames = animation.totalFrames - 2;
     let animationFrame = (progress * totolFrames) < 0 ? 0 : progress * totolFrames;
     setAnimationFrameTo(animationFrame);
     console.log(animationFrame, "current animation frame");
