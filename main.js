@@ -11,7 +11,7 @@ const airpods = {
 	frame: 0,
 };
 
-const acceleration = 0.055;
+const acceleration = 0.054;
 
 // Populating images
 const currentFrame = (index) =>
@@ -57,6 +57,8 @@ function initCanvas() {
 	updateFrame(0);
 }
 
-initCanvas();
+document.addEventListener("DOMContentLoaded", () => {
+	initCanvas();
+});
 
 console.log(location.hostname, "hostname");
