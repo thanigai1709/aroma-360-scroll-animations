@@ -1,88 +1,62 @@
-gsap.registerPlugin(ScrollTrigger)
-const sequenceContainer = document.getElementById('sequenceContainer');
-const canvas = document.getElementById('sequence-canvas');
-const context = canvas.getContext('2d');
-const frameCount = 189;
+gsap.registerPlugin(ScrollTrigger);
+const sequenceContainer = document.getElementById("sequenceContainer");
+const canvas = document.getElementById("sequence-canvas");
+const context = canvas.getContext("2d");
+const frameCount = 48;
 const img = new Image();
-const setting = document.querySelector('.setting button');
+const setting = document.querySelector(".setting button");
 
-setting.addEventListener('click', () => {
-    document.querySelectorAll('.pin-head').forEach(el => el.style.display = "none");
-})
+const images = [];
+const airpods = {
+	frame: 0,
+};
+
+const acceleration = 0.055;
+
+// Populating images
+const currentFrame = (index) =>
+	`https://www.apple.com/105/media/us/airpods-max/2020/996b980b-3131-44f1-af6c-fe72f9b3bfb5/anim/turn/large/large_${index
+		.toString()
+		.padStart(4, "0")}.jpg`;
+
+for (let i = 0; i < frameCount; i++) {
+	const img = new Image();
+	img.src = currentFrame(i);
+	console.log(currentFrame, "currenct frame");
+	images.push(img);
+}
 
 const scene1 = gsap.timeline({
-    scrollTrigger: {
-        trigger: sequenceContainer,
-        pin: true,
-        start: "top top",
-        scrub: 1,
-        onUpdate: (e) => paintFrame(e)
-    }
+	scrollTrigger: {
+		trigger: sequenceContainer,
+		pin: true,
+		anticipatePin: 1,
+		start: "top top",
+		scrub: 1.6,
+		onUpdate: (e) => paintFrame(e),
+	},
 });
-
-const scene2 = gsap.timeline({
-    scrollTrigger: {
-        trigger: sequenceContainer,
-        start: "top top",
-        scrub: 1
-    }
-});
-
-// products part contents
-scene1.to('.text-block.first .text-block__content', { duration: 0.5, y: '0%', opacity: 1, ease: "power3.inOut" }, 'scene-in-1')
-    .to('.text-block.first .text-block__content', { duration: 1.8, y: "100%", opacity: 0, ease: "power3.inOut" }, 'scene-out-1')
-    .to('.text-block.second .text-block__content', { duration: 0.5, y: '0%', opacity: 1, ease: "power3.inOut" }, 'scene-in-1')
-    .to('.text-block.second .text-block__content', { duration: 1.8, y: "100%", opacity: 0, ease: "power3.inOut" }, 'scene-out-1')
-    .to('.text-block.fourth .text-block__content', { duration: 0.7, y: '0%', opacity: 1, ease: "power3.inOut" }, ">-0.7", 'scene-in-2')
-    .to('.text-block.fourth .text-block__content', { duration: 1.8, y: "100%", opacity: 0, ease: "power3.inOut" }, 'scene-out-2')
-    .to('.text-block.third .text-block__content', { duration: 0.6, y: '0%', opacity: 1, ease: "power3.inOut" }, ">-2.2", 'scene-in-3')
-    .to('.text-block.third .text-block__content', { duration: 1, y: "100%", opacity: 0, ease: "power3.inOut" }, 'scene-out-3')
-    .to('.text-block.fifth .text-block__content', { duration: 3.1, y: '0%', opacity: 1, ease: "power3.inOut" }, 'scene-in-4')
-// product part highlight lines
-scene2.to('.text-block.first .pin-head', { duration: 0.5, x: '0%', opacity: 1, ease: "power3.inOut" }, 'scene-in-1')
-    .to('.text-block.first .pin-head', { duration: 1.8, x: "-100%", opacity: 0, ease: "power3.inOut" }, 'scene-out-1')
-    .to('.text-block.second .pin-head', { duration: 0.5, x: '0%', opacity: 1, ease: "power3.inOut" }, 'scene-in-1')
-    .to('.text-block.second .pin-head', { duration: 1.8, x: "100%", opacity: 0, ease: "power3.inOut" }, 'scene-out-1')
-    .to('.text-block.fourth .pin-head', { duration: 0.7, x: '0%', opacity: 1, ease: "power3.inOut" }, ">-0.5", 'scene-in-2')
-    .to('.text-block.fourth .pin-head', { duration: 1.8, x: "100%", opacity: 0, ease: "power3.inOut" }, 'scene-out-2')
-    .to('.text-block.third .pin-head', { duration: 0.6, x: '0%', opacity: 1, ease: "power3.inOut" }, ">-2.2", 'scene-in-3')
-    .to('.text-block.third .pin-head', { duration: 1, x: "-100%", opacity: 0, ease: "power3.inOut" }, 'scene-out-3')
-    .to('.text-block.fifth .pin-head', { duration: 3.1, x: '0%', opacity: 1, ease: "power3.inOut" }, 'scene-in-4')
-
-
-function getCurrentFrame(index) {
-    return `/sequence/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
-}
-
-function preloadImages() {
-    for (let i = 1; i < frameCount; i++) {
-        const img = new Image();
-        img.src = getCurrentFrame(i);
-    }
-}
 
 function updateFrame(index) {
-    img.src = getCurrentFrame(index);
-    context.drawImage(img, 0, 0, 1280, 720);
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.drawImage(images[index], 0, 0);
 }
 
 function paintFrame(scrollData) {
-    let currentFrameIndex = Math.ceil((scrollData.start * scrollData.progress) * 0.3) || 1;
-    if (currentFrameIndex <= frameCount) {
-        requestAnimationFrame(() => updateFrame(currentFrameIndex));
-    }
+	console.log(scrollData, "scrolldata");
+	let currentFrameIndex = Math.ceil(scrollData.start * scrollData.progress * acceleration);
+	console.log(currentFrameIndex);
+	if (currentFrameIndex < frameCount) {
+		requestAnimationFrame(() => updateFrame(currentFrameIndex));
+	}
 }
 
 function initCanvas() {
-    img.src = getCurrentFrame(1);
-    canvas.width = 1280;
-    canvas.height = 720;
-    img.onload = function () {
-        context.drawImage(img, 0, 0, 1280, 720);
-    }
+	canvas.width = 1000;
+	canvas.height = 1214;
+	updateFrame(0);
 }
 
 initCanvas();
-preloadImages();
 
-console.log(location.hostname, "hostname")
+console.log(location.hostname, "hostname");
