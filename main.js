@@ -22,7 +22,7 @@ const currentFrame = (index) =>
 for (let i = 0; i < frameCount; i++) {
 	const img = new Image();
 	img.src = currentFrame(i);
-	console.log(currentFrame, "currenct frame");
+	console.log(currentFrame, "current frame");
 	images.push(img);
 }
 
@@ -32,7 +32,7 @@ const scene1 = gsap.timeline({
 		pin: true,
 		anticipatePin: 1,
 		start: "top top",
-		scrub: 1.6,
+		scrub: 1.8,
 		onUpdate: (e) => paintFrame(e),
 	},
 });
@@ -40,14 +40,15 @@ const scene1 = gsap.timeline({
 function updateFrame(index) {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	context.drawImage(images[index], 0, 0);
+	requestAnimationFrame(() => updateFrame(airpods.frame));
 }
 
 function paintFrame(scrollData) {
-	console.log(scrollData, "scrolldata");
+	console.log(scrollData, "scrollData");
 	let currentFrameIndex = Math.ceil(scrollData.start * scrollData.progress * acceleration);
 	console.log(currentFrameIndex);
 	if (currentFrameIndex < frameCount) {
-		requestAnimationFrame(() => updateFrame(currentFrameIndex));
+		airpods.frame = currentFrameIndex;
 	}
 }
 
