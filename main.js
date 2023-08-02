@@ -32,7 +32,7 @@ const scene1 = gsap.timeline({
 		pin: true,
 		anticipatePin: 1,
 		start: "top top",
-		scrub: 1.8,
+		scrub: 1.6,
 		onUpdate: (e) => paintFrame(e),
 	},
 });
