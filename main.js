@@ -56,9 +56,17 @@ function updateFrame(index) {
 
 function paintFrame(scrollData) {
 	let currentFrameIndex = Math.ceil(scrollData.progress * 100 * acceleration);
-	console.log(currentFrameIndex);
+	// console.log(currentFrameIndex);
 	if (currentFrameIndex < frameCount) {
-		airpods.frame = currentFrameIndex;
+		airpods.frame = parseInt(
+			gsap.utils.interpolate(
+				airpods.frame,
+				currentFrameIndex,
+				1, // Duration of interpolation in seconds
+				Power3.inOut // Choose the easing function you prefer
+			)
+		);
+		console.log(airpods.frame);
 	}
 }
 
