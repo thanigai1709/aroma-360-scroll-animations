@@ -3,7 +3,7 @@ const sequenceContainer = document.getElementById("sequenceContainer");
 const bannerTexts = document.querySelectorAll(".animation-hero__text .fade-in.fade-in--up");
 const canvas = document.getElementById("sequence-canvas");
 const context = canvas.getContext("2d");
-const frameCount = 471;
+const frameCount = 521;
 const img = new Image();
 const setting = document.querySelector(".setting button");
 
@@ -12,7 +12,7 @@ const airpods = {
 	frame: 0,
 };
 
-const acceleration = 4.85;
+const acceleration = 5.22;
 
 // Populating images
 const currentFrame = (index) => `sequence/img-${index + 1}.png`;
@@ -30,7 +30,7 @@ const scene1 = gsap.timeline({
 		pin: true,
 		anticipatePin: 1.5,
 		start: "top top",
-		end: "+=30000",
+		end: "+=50000",
 		scrub: 1.2,
 		onUpdate: (e) => paintFrame(e),
 	},
@@ -55,7 +55,6 @@ function updateFrame(index) {
 }
 
 function paintFrame(scrollData) {
-	console.log(scrollData.getVelocity(), "scrollData");
 	let currentFrameIndex = Math.ceil(scrollData.progress * 100 * acceleration);
 	console.log(currentFrameIndex);
 	if (currentFrameIndex < frameCount) {
