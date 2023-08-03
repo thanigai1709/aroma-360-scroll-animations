@@ -1,14 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
 	padding: 0;
 	margin: 0;
-	font-family: "Plus Jakarta Sans", sans-serif;
+	font-family: "Noto Sans", sans-serif;
 }
 
 .wrapper {
 	font-size: 16px;
-	background-color: white;
+	background-color: #121212;
 }
 
 .spacer {
@@ -16,7 +16,7 @@
 	height: 100vh;
 	background-color: white;
 	width: 100%;
-	color: black;
+	color: #121212;
 	align-items: center;
 	justify-content: center;
 	font-size: 10em;
@@ -24,142 +24,98 @@
 	letter-spacing: -3pt;
 }
 
-.video-section canvas {
-	max-width: 100%;
-	max-height: 100%;
-	/* transform: scale(0.8); */
-}
-
-.video-section {
+.animation-seq__container {
 	width: 100%;
-	height: 100vh;
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: center;
 }
 
-.canvas-wrapper {
-	position: relative;
-	max-width: 1280px;
-	margin: auto;
+.animation-seq__canvas {
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
 }
 
-.text-1,
-.text-2,
-.text-3 {
-	position: absolute;
-	font-size: 2em;
-	color: white;
-}
-
-.text-1 {
-	top: 0;
-	overflow: hidden;
-	transform: translateY(100%);
-	opacity: 0;
-}
-
-.text-block {
-	position: absolute;
-	overflow: hidden;
-}
-
-.text-block__content {
-	display: flex;
-	flex-direction: column;
-	color: white;
-	row-gap: 0.5em;
-	max-width: 19em;
-	transform: translateY(100%);
-	opacity: 0;
-}
-
-.text-block__content p {
-	opacity: 0.8;
-}
-
-.pin-head-container {
-	width: 33em;
-	display: flex;
-	overflow: hidden;
-	height: 10px;
-	margin-bottom: 0.5em;
-}
-
-.pin-head {
+.animation-seq__wrapper {
 	width: 100%;
 	display: flex;
 	align-items: center;
-	transform: translateX(-100%);
-	opacity: 0;
+	justify-content: flex-start;
+	position: relative;
 }
 
-.pin-head::before {
-	content: "";
+.animation-seq__container {
+	margin-inline: auto;
+}
+
+.animation-hero__container {
 	position: absolute;
-	width: 6px;
-	height: 6px;
-	background-color: #6e6e73;
+	display: flex;
+	align-items: center;
+	left: 0;
 	right: 0;
-	border-radius: 50px;
-}
-
-.pin-head::after {
-	content: "";
-	position: absolute;
+	top: 0;
+	max-width: 88%;
+	margin-inline: auto;
+	height: 100%;
 	width: 100%;
-	height: 1px;
-	background-color: #6e6e73;
+	padding: 1.5rem;
 }
 
-.text-block.first {
-	top: 15%;
-	left: 0;
-}
-
-.text-block.second {
-	top: 57%;
-	right: 0;
-}
-
-.text-block.third {
-	top: 20%;
-	left: 0%;
-}
-
-.text-block.third .pin-head-container {
-	width: 30em;
-}
-
-.text-block.fourth {
-	top: 8%;
-	right: 0%;
-}
-
-.text-block.fifth {
-	top: 60%;
-	left: 0%;
-}
-
-.text-block:nth-of-type(even) .text-block__content {
-	margin-left: auto;
-}
-
-.text-block:nth-of-type(even) .pin-head {
-	transform: translateX(100%);
-}
-
-.text-block:nth-of-type(even) .pin-head::before {
-	left: 0;
-}
-
-.setting {
-	position: fixed;
+.animation-hero__text {
+	display: flex;
+	flex-direction: column;
+	color: #dbdee5;
+	max-width: 38.688rem;
 	width: 100%;
-	left: 0;
-	bottom: 0;
+	overflow: hidden;
 }
 
-.setting button {
-	padding: 14px;
+.animation-text__title {
+	font-size: 2.625rem;
+	font-weight: 300;
+	margin-bottom: 1.375rem;
+	letter-spacing: 0.005rem;
+}
+
+.animation-text__heading {
+	font-size: 8rem;
+	font-weight: 600;
+	line-height: 0.8;
+	margin-bottom: 1.375rem;
+	letter-spacing: 0;
+}
+
+.animation-text__description {
+	font-size: 1.5rem;
+	font-weight: 300;
+	margin-bottom: 5.625rem;
+}
+
+.btn {
+	padding: 1.15rem 3.6rem;
+	display: flex;
+	width: fit-content;
+	align-items: center;
+	justify-content: center;
+	color: #dbdee5;
+	text-transform: uppercase;
+	text-decoration: none;
+	letter-spacing: 0.075rem;
+}
+
+.btn.btn--primary {
+	border: 1px solid #dbdee5;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+}
+
+.btn.btn--primary:hover {
+	color: #121212;
+	background-color: #dbdee5;
+}
+
+.fade-in.fade-in--up {
+	overflow: hidden;
 }
