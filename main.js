@@ -2,7 +2,7 @@ gsap.registerPlugin(ScrollTrigger);
 const sequenceContainer = document.getElementById("sequenceContainer");
 const canvas = document.getElementById("sequence-canvas");
 const context = canvas.getContext("2d");
-const frameCount = 48;
+const frameCount = 471;
 const img = new Image();
 const setting = document.querySelector(".setting button");
 
@@ -11,13 +11,10 @@ const airpods = {
 	frame: 0,
 };
 
-const acceleration = 0.054;
+const acceleration = 0.06;
 
 // Populating images
-const currentFrame = (index) =>
-	`https://www.apple.com/105/media/us/airpods-max/2020/996b980b-3131-44f1-af6c-fe72f9b3bfb5/anim/turn/large/large_${index
-		.toString()
-		.padStart(4, "0")}.jpg`;
+const currentFrame = (index) => `sequence/img-${index + 1}.png`;
 
 for (let i = 0; i < frameCount; i++) {
 	const img = new Image();
@@ -32,10 +29,12 @@ const scene1 = gsap.timeline({
 		pin: true,
 		anticipatePin: 1.5,
 		start: "top top",
-		scrub: 1.6,
+		scrub: 50,
 		onUpdate: (e) => paintFrame(e),
 	},
 });
+
+// scene1.to(canvas, { duration: 0.5, scale: 1, ease: "power4.easeOut" }, "scene-in-1");
 
 function updateFrame(index) {
 	context.clearRect(0, 0, canvas.width, canvas.height);
@@ -53,8 +52,8 @@ function paintFrame(scrollData) {
 }
 
 function initCanvas() {
-	canvas.width = 1000;
-	canvas.height = 1214;
+	canvas.width = 1920;
+	canvas.height = 1080;
 	updateFrame(0);
 }
 
