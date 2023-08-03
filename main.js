@@ -30,7 +30,7 @@ const scene1 = gsap.timeline({
 		pin: true,
 		anticipatePin: 1.5,
 		start: "top top",
-		end: "+=50000",
+		end: "+=15000",
 		scrub: 1.2,
 		onUpdate: (e) => paintFrame(e),
 	},
