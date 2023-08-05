@@ -132,3 +132,35 @@
 .fade-in.fade-in--up {
 	overflow: hidden;
 }
+
+.animation-captions__container {
+	position: absolute;
+	height: 100%;
+	width: 1000px;
+	left: 0;
+	right: 0;
+	top: 0;
+	margin-inline: auto;
+}
+
+.animation-captions__item {
+	display: flex;
+	flex-direction: column;
+	width: 251px;
+	color: #dbdee5;
+	gap: 18.25px;
+	opacity: 0;
+}
+
+.animation-captions__item h3 {
+	font-size: 30px;
+	letter-spacing: 0;
+	font-weight: 400;
+}
+
+.animation-captions__item p {
+	font-size: 16px;
+	line-height: 1.7;
+	font-weight: 300;
+	letter-spacing: 0;
+}
