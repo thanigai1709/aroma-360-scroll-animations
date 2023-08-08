@@ -174,7 +174,7 @@ function initializeCanvasAndAnimations() {
 
 document.addEventListener("DOMContentLoaded", () => {
 	// smooth scroll disabled in mobile screens for performance reasons
-	if (document.body.width > 768) {
+	if (window.innerWidth > 768) {
 		console.log("lennis loading");
 		const lenis = new Lenis();
 		lenis.on("scroll", (e) => {
