@@ -1,30 +1,35 @@
 gsap.registerPlugin(ScrollTrigger);
+
+// Element References
 const sequenceContainer = document.getElementById("sequenceContainer");
 const bannerTexts = document.querySelectorAll(".animation-hero__text .fade-in.fade-in--up");
 const canvas = document.getElementById("sequence-canvas");
 const context = canvas.getContext("2d");
+
+// Constants
 const frameCount = 521;
 const img = new Image();
 const setting = document.querySelector(".setting button");
 let isAutoPlaying = false;
+let autoScrollInterval;
 const images = [];
-const airpods = {
+const wirelessProAnimationState = {
 	frame: 0,
 };
-
 const acceleration = 5.22;
 
-// Populating images
-const currentFrame = (index) => `sequence/img-${index + 1}.png`;
+// Function to generate image URLs for frames
+const getFrameImageUrl = (index) => `sequence/img-${index + 1}.png`;
 
+// Populating images
 for (let i = 0; i < frameCount; i++) {
 	const img = new Image();
-	img.src = currentFrame(i);
-	console.log(currentFrame, "current frame");
+	img.src = getFrameImageUrl(i);
 	images.push(img);
 }
 
-const scene1 = gsap.timeline({
+// GSAP Scroll Animation
+const scrollAnimation = gsap.timeline({
 	scrollTrigger: {
 		trigger: sequenceContainer,
 		pin: true,
@@ -32,18 +37,18 @@ const scene1 = gsap.timeline({
 		start: "top top",
 		end: "+=17000",
 		scrub: 1.2,
-		onUpdate: (e) => paintFrame(e),
+		onUpdate: (e) => updateCanvasFrame(e),
 	},
 });
 
-scene1
+scrollAnimation
 	.to(
 		bannerTexts,
 		{
 			opacity: 0,
 			x: "-100%",
-			duration: 0.8,
-			stagger: 0.05,
+			duration: 0.6,
+			stagger: false,
 			ease: "expo.inOut",
 		},
 		"-=10"
@@ -52,7 +57,7 @@ scene1
 		".animation-captions__item.caption--1",
 		{
 			opacity: 1,
-			duration: 0.6,
+			duration: 0.7,
 			ease: "power3.inOut",
 		},
 		"-=9.9"
@@ -64,22 +69,31 @@ scene1
 			duration: 0.4,
 			ease: "power3.inOut",
 		},
-		"-=9"
+		"-=9.2"
 	)
 	.to(
 		".animation-captions__item.caption--2",
 		{
 			opacity: 1,
-			duration: 0.6,
+			duration: 0.7,
 			ease: "expo.inOut",
 		},
-		"-=8.9"
+		"-=9"
 	)
 	.to(
 		".animation-captions__item.caption--2",
 		{
 			opacity: 0,
 			duration: 0.4,
+			ease: "expo.inOut",
+		},
+		"-=8.2"
+	)
+	.to(
+		".animation-captions__item.caption--3",
+		{
+			opacity: 1,
+			duration: 0.7,
 			ease: "expo.inOut",
 		},
 		"-=8"
@@ -87,29 +101,20 @@ scene1
 	.to(
 		".animation-captions__item.caption--3",
 		{
-			opacity: 1,
-			duration: 0.6,
-			ease: "expo.inOut",
-		},
-		"-=7.9"
-	)
-	.to(
-		".animation-captions__item.caption--3",
-		{
 			opacity: 0,
 			duration: 0.4,
 			ease: "expo.inOut",
 		},
-		"-=7"
+		"-=7.2"
 	)
 	.to(
 		".animation-captions__item.caption--4",
 		{
 			opacity: 1,
-			duration: 0.6,
+			duration: 0.7,
 			ease: "expo.inOut",
 		},
-		"-=6.9"
+		"-=7"
 	)
 	.to(
 		".animation-captions__item.caption--4",
@@ -119,70 +124,69 @@ scene1
 			ease: "expo.inOut",
 		},
 		"-=6.2"
+	)
+	.to(
+		".feature-captions h3",
+		{
+			opacity: 1,
+			duration: 0.7,
+			ease: "expo.inOut",
+			stagger: 0.1,
+		},
+		"-=4.2"
+	)
+	.to(
+		".feature-captions h3",
+		{
+			opacity: 0,
+			duration: 0.7,
+			ease: "expo.inOut",
+			stagger: 0.1,
+		},
+		"-=3.5"
 	);
 
-function updateFrame(index) {
-	context.clearRect(0, 0, canvas.width, canvas.height);
-	context.drawImage(images[index], 0, 0);
-	requestAnimationFrame(() => updateFrame(airpods.frame));
-}
-
-function paintFrame(scrollData) {
+// Function to update the canvas frame
+function updateCanvasFrame(scrollData) {
 	let currentFrameIndex = Math.ceil(scrollData.progress * 100 * acceleration);
-	// console.log(scrollData.progress);
-	// if (scrollData.progress >= 0.7 && scrollData.progress <= 0.95) {
-	// 	if (!isAutoPlaying) {
-	// 		isAutoPlaying = true;
-	// 		autoScroll();
-	// 	}
-	// } else {
-	// 	if (isAutoPlaying) isAutoPlaying = false;
-	// 	if (currentFrameIndex < frameCount) {
-	// 		airpods.frame = currentFrameIndex;
-	// 	}
-	// }
 	if (currentFrameIndex < frameCount) {
-		airpods.frame = currentFrameIndex;
+		wirelessProAnimationState.frame = currentFrameIndex;
+		paintCanvasFrame();
 	}
 }
 
-function autoScroll() {
-	let index = 1;
-	setInterval(() => {
-		if (index <= 135) {
-			airpods.frame = airpods.frame + 1;
-			console.log(airpods.frame, "current frame", index, "count");
-			index++;
-		}
-	}, 200);
+// Function to paint the canvas frame
+function paintCanvasFrame() {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.drawImage(images[wirelessProAnimationState.frame], 0, 0);
+	requestAnimationFrame(paintCanvasFrame);
 }
 
-function initCanvas() {
+// Function to initialize canvas and animations
+function initializeCanvasAndAnimations() {
 	window.scrollTo(0, 0);
 	canvas.width = 1920;
 	canvas.height = 1080;
-	updateFrame(0);
-	initStartElePositions();
-	openingAnimations();
+	paintCanvasFrame();
+	initializeStartPosition();
+	playOpeningAnimations();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 	const lenis = new Lenis();
-
 	lenis.on("scroll", (e) => {
-		console.log(e);
+		// console.log(e);
 	});
-
-	function raf(time) {
+	function requestAnimationFrameLoop(time) {
 		lenis.raf(time);
-		requestAnimationFrame(raf);
+		requestAnimationFrame(requestAnimationFrameLoop);
 	}
-
-	requestAnimationFrame(raf);
-	initCanvas();
+	requestAnimationFrame(requestAnimationFrameLoop);
+	initializeCanvasAndAnimations();
 });
 
-function initStartElePositions() {
+// Function to initialize start positions of elements
+function initializeStartPosition() {
 	gsap.set(canvas, {
 		y: "-100%",
 		opacity: 0.8,
@@ -193,9 +197,10 @@ function initStartElePositions() {
 	});
 }
 
-function openingAnimations() {
-	let intoAnimationTl = gsap.timeline();
-	intoAnimationTl
+// Function to play opening animations
+function playOpeningAnimations() {
+	let openingAnimationTl = gsap.timeline();
+	openingAnimationTl
 		.to(canvas, {
 			y: "0",
 			duration: 1.8,

@@ -19,6 +19,10 @@
 	}
 }
 
+body {
+	overflow: hidden;
+}
+
 html.lenis {
 	height: auto;
 }
@@ -157,7 +161,7 @@ html.lenis {
 .animation-captions__container {
 	position: absolute;
 	height: 100%;
-	width: 1000px;
+	max-width: 1200px;
 	left: 0;
 	right: 0;
 	top: 0;
@@ -167,7 +171,7 @@ html.lenis {
 .animation-captions__item {
 	display: flex;
 	flex-direction: column;
-	width: 251px;
+	max-width: 251px;
 	color: #dbdee5;
 	gap: 18.25px;
 	opacity: 0;
@@ -193,4 +197,22 @@ html.lenis {
 .caption--4 {
 	top: 20%;
 	right: 0;
+}
+
+.feature-captions {
+	display: flex;
+	flex-direction: column;
+	max-width: 295px;
+	color: #dbdee5;
+	gap: 56px;
+	position: absolute;
+	right: 0;
+	top: 40%;
+}
+
+.feature-captions h3 {
+	font-size: 30px;
+	letter-spacing: 0;
+	font-weight: 400;
+	opacity: 0;
 }
