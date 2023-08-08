@@ -121,6 +121,21 @@ html.lenis {
 	}
 }
 
+@media screen and (max-width: 768px) {
+	.animation-hero__container {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		left: 0;
+		right: 0;
+		margin-inline: auto;
+		width: 100%;
+		padding: 1.5em;
+		height: auto;
+		top: 30%;
+	}
+}
+
 .animation-hero__text {
 	display: flex;
 	flex-direction: column;
