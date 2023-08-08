@@ -187,6 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Function to initialize start positions of elements
 function initializeStartPosition() {
+	document.querySelector(".animation-hero__text").style.visibility = "visible";
 	gsap.set(canvas, {
 		y: "-100%",
 		opacity: 0.8,

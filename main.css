@@ -67,6 +67,8 @@ html.lenis {
 	width: 100vw;
 	height: 100vh;
 	object-fit: contain;
+	transform: translateY(-100%);
+	opacity: 0.8;
 }
 
 @media screen and (max-width: 1740px) {
@@ -168,10 +170,14 @@ html.lenis {
 	margin-inline: auto;
 }
 
+.animation-hero__text {
+	visibility: hidden;
+}
+
 .animation-captions__item {
 	display: flex;
 	flex-direction: column;
-	max-width: 251px;
+	max-width: 270px;
 	color: #dbdee5;
 	gap: 18.25px;
 	opacity: 0;
