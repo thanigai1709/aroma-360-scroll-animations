@@ -13,6 +13,7 @@
 
 body {
 	overflow: hidden;
+	position: absolute;
 }
 
 html.lenis {
