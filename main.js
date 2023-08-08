@@ -173,15 +173,19 @@ function initializeCanvasAndAnimations() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	const lenis = new Lenis();
-	lenis.on("scroll", (e) => {
-		// console.log(e);
-	});
-	function requestAnimationFrameLoop(time) {
-		lenis.raf(time);
+	// smooth scroll disabled in mobile screens for performance reasons
+	if (document.body.width > 768) {
+		console.log("lennis loading");
+		const lenis = new Lenis();
+		lenis.on("scroll", (e) => {
+			// console.log(e);
+		});
+		function requestAnimationFrameLoop(time) {
+			lenis.raf(time);
+			requestAnimationFrame(requestAnimationFrameLoop);
+		}
 		requestAnimationFrame(requestAnimationFrameLoop);
 	}
-	requestAnimationFrame(requestAnimationFrameLoop);
 	initializeCanvasAndAnimations();
 });
 
