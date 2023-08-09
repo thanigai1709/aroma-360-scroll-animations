@@ -19,7 +19,7 @@ const wirelessProAnimationState = {
 const acceleration = 5.22;
 
 // Function to generate image URLs for frames
-const getFrameImageUrl = (index) => `sequence/img-${index + 1}.png`;
+const getFrameImageUrl = (index) => `sequence/img-${index + 1}.webp`;
 
 // Populating images
 for (let i = 0; i < frameCount; i++) {
