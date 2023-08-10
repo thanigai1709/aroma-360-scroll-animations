@@ -8,11 +8,10 @@ const context = canvas.getContext("2d");
 
 // Constants
 const frameCount = 521;
-const img = new Image();
 const setting = document.querySelector(".setting button");
 let isAutoPlaying = false;
 let autoScrollInterval;
-const images = [];
+let images = [];
 const loadImages = [];
 let imageLoadedCount;
 let bufferThreshold = 100;
@@ -24,17 +23,29 @@ const acceleration = 5.22;
 // Function to generate image URLs for frames
 const getFrameImageUrl = (index) => `sequence/img-${index + 1}.webp`;
 
-function initImageSequence() {
-	// Populating images
-	for (let i = 0; i < bufferThreshold; i++) {
+function imgLoadResolver(url) {
+	return new Promise((resolve, reject) => {
 		const img = new Image();
-		img.src = getFrameImageUrl(i);
-		images.push(img);
-	}
-	imageLoadedCount = images.length;
+		img.onload = () => resolve(img);
+		img.onerror = () => reject(new Error(`Error loading image: ${url}`));
+		img.src = url;
+	});
 }
 
-initImageSequence();
+async function initImageSequence() {
+	// Load all images using Promises
+	const imagePromises = [];
+	for (let i = 0; i < bufferThreshold; i++) {
+		const imageUrl = getFrameImageUrl(i);
+		imagePromises.push(imgLoadResolver(imageUrl));
+	}
+	try {
+		images = await Promise.all(imagePromises);
+		imageLoadedCount = images.length;
+	} catch (error) {
+		console.error(error);
+	}
+}
 
 function bufferImageSequence(currentFrameIndex) {
 	if (imageLoadedCount < frameCount && imageLoadedCount + parseInt(bufferThreshold / 2) > currentFrameIndex) {
@@ -183,7 +194,6 @@ function updateCanvasFrame(scrollData) {
 function paintCanvasFrame() {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	context.drawImage(images[wirelessProAnimationState.frame], 0, 0);
-	requestAnimationFrame(paintCanvasFrame);
 }
 
 // Function to initialize canvas and animations
@@ -200,8 +210,8 @@ if (history.scrollRestoration) {
 	history.scrollRestoration = "manual";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-	window.scrollTo(0, 0);
+document.addEventListener("DOMContentLoaded", async () => {
+	await initImageSequence();
 	// smooth scroll disabled in mobile screens for performance reasons
 	if (window.innerWidth > 768) {
 		console.log("lennis loading");
