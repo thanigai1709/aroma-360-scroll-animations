@@ -15,7 +15,7 @@ let autoScrollInterval;
 const images = [];
 const loadImages = [];
 let imageLoadedCount;
-let bufferThreshold = 64;
+let bufferThreshold = 100;
 const wirelessProAnimationState = {
 	frame: 0,
 };
