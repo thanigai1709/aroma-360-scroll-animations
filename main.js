@@ -175,7 +175,6 @@ function updateCanvasFrame(scrollData) {
 	if (currentFrameIndex < frameCount) {
 		if (scrollData.direction === 1 && parseInt(scrollData.progress * 100) > 0) bufferImageSequence(currentFrameIndex);
 		wirelessProAnimationState.frame = currentFrameIndex;
-		paintCanvasFrame();
 	}
 }
 
