@@ -13,6 +13,9 @@ const setting = document.querySelector(".setting button");
 let isAutoPlaying = false;
 let autoScrollInterval;
 const images = [];
+const loadImages = [];
+let imageLoadedCount;
+let bufferThreshold = 64;
 const wirelessProAnimationState = {
 	frame: 0,
 };
@@ -21,11 +24,31 @@ const acceleration = 5.22;
 // Function to generate image URLs for frames
 const getFrameImageUrl = (index) => `sequence/img-${index + 1}.webp`;
 
-// Populating images
-for (let i = 0; i < frameCount; i++) {
-	const img = new Image();
-	img.src = getFrameImageUrl(i);
-	images.push(img);
+function initImageSequence() {
+	// Populating images
+	for (let i = 0; i < bufferThreshold; i++) {
+		const img = new Image();
+		img.src = getFrameImageUrl(i);
+		images.push(img);
+	}
+	imageLoadedCount = images.length;
+}
+
+initImageSequence();
+
+function bufferImageSequence(currentFrameIndex) {
+	if (imageLoadedCount < frameCount && imageLoadedCount + parseInt(bufferThreshold / 2) > currentFrameIndex) {
+		let newBoundry =
+			currentFrameIndex + bufferThreshold > frameCount ? frameCount : currentFrameIndex + bufferThreshold;
+		if (newBoundry > imageLoadedCount) {
+			for (let i = imageLoadedCount - 1; i < newBoundry; i++) {
+				const img = new Image();
+				img.src = getFrameImageUrl(i);
+				images.push(img);
+			}
+			imageLoadedCount = images.length;
+		}
+	}
 }
 
 // GSAP Scroll Animation
@@ -150,6 +173,7 @@ scrollAnimation
 function updateCanvasFrame(scrollData) {
 	let currentFrameIndex = Math.ceil(scrollData.progress * 100 * acceleration);
 	if (currentFrameIndex < frameCount) {
+		if (scrollData.direction === 1 && parseInt(scrollData.progress * 100) > 0) bufferImageSequence(currentFrameIndex);
 		wirelessProAnimationState.frame = currentFrameIndex;
 		paintCanvasFrame();
 	}
@@ -172,7 +196,12 @@ function initializeCanvasAndAnimations() {
 	playOpeningAnimations();
 }
 
+if (history.scrollRestoration) {
+	history.scrollRestoration = "manual";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+	window.scrollTo(0, 0);
 	// smooth scroll disabled in mobile screens for performance reasons
 	if (window.innerWidth > 768) {
 		console.log("lennis loading");
