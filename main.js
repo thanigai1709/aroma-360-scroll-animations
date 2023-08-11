@@ -58,7 +58,7 @@ const scrollAnimation = gsap.timeline({
 		pin: true,
 		anticipatePin: 1.5,
 		start: "top top",
-		end: "+=17000",
+		end: "+=20000",
 		scrub: 1.2,
 		onUpdate: (e) => updateCanvasFrame(e),
 	},
@@ -167,7 +167,31 @@ scrollAnimation
 			stagger: 0.1,
 		},
 		"-=3.5"
-	);
+	)
+	.to(
+		".animation-captions__item--group .animation-captions__item",
+		{
+			opacity: 1,
+			duration: 1,
+			ease: "expo.inOut",
+			stagger: 0.4,
+		},
+		"-=3"
+	)
+	.to(
+		".animation-captions__item--group",
+		{
+			opacity: 0,
+			duration: 0.8,
+			ease: "expo.inOut",
+		},
+		"-=1.5"
+	)
+	.to(".animation-captions__item.caption--8", {
+		opacity: 1,
+		duration: 0.8,
+		ease: "expo.inOut",
+	});
 
 // Function to update the canvas frame
 function updateCanvasFrame(scrollData) {
@@ -202,17 +226,14 @@ if (history.scrollRestoration) {
 document.addEventListener("DOMContentLoaded", () => {
 	window.scrollTo(0, 0);
 	// smooth scroll disabled in mobile screens for performance reasons
-	if (window.innerWidth > 768) {
+	if (window.innerWidth) {
 		console.log("lennis loading");
 		const lenis = new Lenis();
-		lenis.on("scroll", (e) => {
-			// console.log(e);
+		lenis.on("scroll", ScrollTrigger.update);
+		gsap.ticker.add((time) => {
+			lenis.raf(time * 1000);
 		});
-		function requestAnimationFrameLoop(time) {
-			lenis.raf(time);
-			requestAnimationFrame(requestAnimationFrameLoop);
-		}
-		requestAnimationFrame(requestAnimationFrameLoop);
+		gsap.ticker.lagSmoothing(0);
 	}
 	initializeCanvasAndAnimations();
 });
