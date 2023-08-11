@@ -89,7 +89,7 @@ scrollAnimation
 		".animation-captions__item.caption--1",
 		{
 			opacity: 0,
-			duration: 0.4,
+			duration: 0.5,
 			ease: "power3.inOut",
 		},
 		"-=9.2"
@@ -107,7 +107,7 @@ scrollAnimation
 		".animation-captions__item.caption--2",
 		{
 			opacity: 0,
-			duration: 0.4,
+			duration: 0.5,
 			ease: "expo.inOut",
 		},
 		"-=8.2"
@@ -125,10 +125,10 @@ scrollAnimation
 		".animation-captions__item.caption--3",
 		{
 			opacity: 0,
-			duration: 0.4,
+			duration: 0.5,
 			ease: "expo.inOut",
 		},
-		"-=7.2"
+		"-=7.1"
 	)
 	.to(
 		".animation-captions__item.caption--4",
@@ -137,16 +137,16 @@ scrollAnimation
 			duration: 0.7,
 			ease: "expo.inOut",
 		},
-		"-=7"
+		"-=6.8"
 	)
 	.to(
 		".animation-captions__item.caption--4",
 		{
 			opacity: 0,
-			duration: 0.4,
+			duration: 0.5,
 			ease: "expo.inOut",
 		},
-		"-=6.2"
+		"-=5.8"
 	)
 	.to(
 		".feature-captions h3",
@@ -166,7 +166,7 @@ scrollAnimation
 			ease: "expo.inOut",
 			stagger: 0.1,
 		},
-		"-=3.5"
+		"-=3.1"
 	)
 	.to(
 		".animation-captions__item--group .animation-captions__item",
@@ -176,7 +176,7 @@ scrollAnimation
 			ease: "expo.inOut",
 			stagger: 0.4,
 		},
-		"-=3"
+		"-=2.8"
 	)
 	.to(
 		".animation-captions__item--group",
@@ -185,7 +185,7 @@ scrollAnimation
 			duration: 1,
 			ease: "expo.inOut",
 		},
-		"-=1.2"
+		"-=0.8"
 	)
 	.to(".animation-captions__item.caption--8", {
 		opacity: 1,
