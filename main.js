@@ -185,7 +185,7 @@ scrollAnimation
 			duration: 1,
 			ease: "expo.inOut",
 		},
-		"-=1.5"
+		"-=1.2"
 	)
 	.to(".animation-captions__item.caption--8", {
 		opacity: 1,
