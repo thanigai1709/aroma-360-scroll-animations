@@ -59,7 +59,7 @@ const scrollAnimation = gsap.timeline({
 		anticipatePin: 1.5,
 		start: "top top",
 		end: "+=20000",
-		scrub: 1.2,
+		scrub: 1,
 		onUpdate: (e) => updateCanvasFrame(e),
 	},
 });
@@ -182,7 +182,7 @@ scrollAnimation
 		".animation-captions__item--group",
 		{
 			opacity: 0,
-			duration: 0.8,
+			duration: 1,
 			ease: "expo.inOut",
 		},
 		"-=1.5"
@@ -211,7 +211,6 @@ function paintCanvasFrame() {
 
 // Function to initialize canvas and animations
 function initializeCanvasAndAnimations() {
-	window.scrollTo(0, 0);
 	canvas.width = 1920;
 	canvas.height = 1080;
 	paintCanvasFrame();
@@ -224,17 +223,12 @@ if (history.scrollRestoration) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	window.scrollTo(0, 0);
-	// smooth scroll disabled in mobile screens for performance reasons
-	if (window.innerWidth) {
-		console.log("lennis loading");
-		const lenis = new Lenis();
-		lenis.on("scroll", ScrollTrigger.update);
-		gsap.ticker.add((time) => {
-			lenis.raf(time * 1000);
-		});
-		gsap.ticker.lagSmoothing(0);
-	}
+	const lenis = new Lenis();
+	lenis.on("scroll", ScrollTrigger.update);
+	gsap.ticker.add((time) => {
+		lenis.raf(time * 1000);
+	});
+	gsap.ticker.lagSmoothing(0);
 	initializeCanvasAndAnimations();
 });
 
