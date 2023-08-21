@@ -15,14 +15,14 @@ let autoScrollInterval;
 const images = [];
 const loadImages = [];
 let imageLoadedCount;
-let bufferThreshold = 100;
+let bufferThreshold = 200;
 const wirelessProAnimationState = {
 	frame: 0,
 };
 const acceleration = 5.22;
 
 // Function to generate image URLs for frames
-const getFrameImageUrl = (index) => `sequence/img-${index + 1}.webp`;
+const getFrameImageUrl = (index) => `https://storage.googleapis.com/wireless-pro-assets/sequence/img-${index + 1}.webp`;
 
 function initImageSequence() {
 	// Populating images
