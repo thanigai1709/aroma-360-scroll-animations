@@ -15,6 +15,10 @@ html.lenis {
 	height: auto;
 }
 
+body::-webkit-scrollbar {
+	display: none;
+}
+
 .lenis.lenis-smooth {
 	scroll-behavior: auto;
 }

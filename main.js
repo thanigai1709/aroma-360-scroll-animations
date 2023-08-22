@@ -7,7 +7,7 @@ const canvas = document.getElementById("sequence-canvas");
 const context = canvas.getContext("2d");
 
 // Constants
-const frameCount = 521;
+const frameCount = 479;
 const img = new Image();
 const setting = document.querySelector(".setting button");
 let isAutoPlaying = false;
@@ -15,11 +15,11 @@ let autoScrollInterval;
 const images = [];
 const loadImages = [];
 let imageLoadedCount;
-let bufferThreshold = 200;
+let bufferThreshold = 150;
 const wirelessProAnimationState = {
 	frame: 0,
 };
-const acceleration = 5.22;
+const acceleration = 5;
 
 // Function to generate image URLs for frames
 const getFrameImageUrl = (index) => `https://storage.googleapis.com/wireless-pro-assets/sequence/img-${index + 1}.webp`;
@@ -59,7 +59,7 @@ const scrollAnimation = gsap.timeline({
 		anticipatePin: 1.5,
 		start: "top top",
 		end: "+=20000",
-		scrub: 1,
+		scrub: 1.2,
 		onUpdate: (e) => updateCanvasFrame(e),
 	},
 });
@@ -187,11 +187,15 @@ scrollAnimation
 		},
 		"-=0.8"
 	)
-	.to(".animation-captions__item.caption--8", {
-		opacity: 1,
-		duration: 0.8,
-		ease: "expo.inOut",
-	});
+	.to(
+		".animation-captions__item.caption--8",
+		{
+			opacity: 1,
+			duration: 0.9,
+			ease: "expo.inOut",
+		},
+		"-=0.4"
+	);
 
 // Function to update the canvas frame
 function updateCanvasFrame(scrollData) {
@@ -211,8 +215,8 @@ function paintCanvasFrame() {
 
 // Function to initialize canvas and animations
 function initializeCanvasAndAnimations() {
-	canvas.width = 1920;
-	canvas.height = 1080;
+	canvas.width = 3840;
+	canvas.height = 2160;
 	paintCanvasFrame();
 	initializeStartPosition();
 	playOpeningAnimations();
