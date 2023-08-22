@@ -7,7 +7,7 @@ const canvas = document.getElementById("sequence-canvas");
 const context = canvas.getContext("2d");
 
 // Constants
-const frameCount = 479;
+const frameCount = 521;
 const img = new Image();
 const setting = document.querySelector(".setting button");
 let isAutoPlaying = false;
@@ -15,14 +15,14 @@ let autoScrollInterval;
 const images = [];
 const loadImages = [];
 let imageLoadedCount;
-let bufferThreshold = 150;
+let bufferThreshold = 200;
 const wirelessProAnimationState = {
 	frame: 0,
 };
-const acceleration = 5.15;
+const acceleration = 5.22;
 
 // Function to generate image URLs for frames
-const getFrameImageUrl = (index) => `https://storage.googleapis.com/wireless-pro-assets/sequence/img-${index + 1}.webp`;
+const getFrameImageUrl = (index) => `/sequence/img-${index + 1}.webp`;
 
 function initImageSequence() {
 	// Populating images
@@ -59,7 +59,7 @@ const scrollAnimation = gsap.timeline({
 		anticipatePin: 1.5,
 		start: "top top",
 		end: "+=20000",
-		scrub: 1.2,
+		scrub: 1,
 		onUpdate: (e) => updateCanvasFrame(e),
 	},
 });
@@ -80,10 +80,10 @@ scrollAnimation
 		".animation-captions__item.caption--1",
 		{
 			opacity: 1,
-			duration: 0.8,
+			duration: 0.7,
 			ease: "power3.inOut",
 		},
-		"-=9.8"
+		"-=9.9"
 	)
 	.to(
 		".animation-captions__item.caption--1",
@@ -92,10 +92,28 @@ scrollAnimation
 			duration: 0.5,
 			ease: "power3.inOut",
 		},
-		"-=8.2"
+		"-=9.2"
 	)
 	.to(
 		".animation-captions__item.caption--2",
+		{
+			opacity: 1,
+			duration: 0.7,
+			ease: "expo.inOut",
+		},
+		"-=9"
+	)
+	.to(
+		".animation-captions__item.caption--2",
+		{
+			opacity: 0,
+			duration: 0.5,
+			ease: "expo.inOut",
+		},
+		"-=8.2"
+	)
+	.to(
+		".animation-captions__item.caption--3",
 		{
 			opacity: 1,
 			duration: 0.7,
@@ -104,31 +122,13 @@ scrollAnimation
 		"-=8"
 	)
 	.to(
-		".animation-captions__item.caption--2",
-		{
-			opacity: 0,
-			duration: 0.5,
-			ease: "expo.inOut",
-		},
-		"-=7.2"
-	)
-	.to(
-		".animation-captions__item.caption--3",
-		{
-			opacity: 1,
-			duration: 0.7,
-			ease: "expo.inOut",
-		},
-		"-=7"
-	)
-	.to(
 		".animation-captions__item.caption--3",
 		{
 			opacity: 0,
 			duration: 0.5,
 			ease: "expo.inOut",
 		},
-		"-=6.2"
+		"-=7.1"
 	)
 	.to(
 		".animation-captions__item.caption--4",
@@ -137,7 +137,7 @@ scrollAnimation
 			duration: 0.7,
 			ease: "expo.inOut",
 		},
-		"-=6"
+		"-=6.8"
 	)
 	.to(
 		".animation-captions__item.caption--4",
@@ -146,7 +146,7 @@ scrollAnimation
 			duration: 0.5,
 			ease: "expo.inOut",
 		},
-		"-=5.4"
+		"-=5.8"
 	)
 	.to(
 		".feature-captions h3",
@@ -187,15 +187,11 @@ scrollAnimation
 		},
 		"-=0.8"
 	)
-	.to(
-		".animation-captions__item.caption--8",
-		{
-			opacity: 1,
-			duration: 0.9,
-			ease: "expo.inOut",
-		},
-		"-=0.4"
-	);
+	.to(".animation-captions__item.caption--8", {
+		opacity: 1,
+		duration: 0.8,
+		ease: "expo.inOut",
+	});
 
 // Function to update the canvas frame
 function updateCanvasFrame(scrollData) {
@@ -215,8 +211,8 @@ function paintCanvasFrame() {
 
 // Function to initialize canvas and animations
 function initializeCanvasAndAnimations() {
-	canvas.width = 3840;
-	canvas.height = 2160;
+	canvas.width = 1920;
+	canvas.height = 1080;
 	paintCanvasFrame();
 	initializeStartPosition();
 	playOpeningAnimations();
