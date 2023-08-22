@@ -19,7 +19,7 @@ let bufferThreshold = 150;
 const wirelessProAnimationState = {
 	frame: 0,
 };
-const acceleration = 5;
+const acceleration = 5.15;
 
 // Function to generate image URLs for frames
 const getFrameImageUrl = (index) => `https://storage.googleapis.com/wireless-pro-assets/sequence/img-${index + 1}.webp`;
@@ -80,10 +80,10 @@ scrollAnimation
 		".animation-captions__item.caption--1",
 		{
 			opacity: 1,
-			duration: 0.7,
+			duration: 0.8,
 			ease: "power3.inOut",
 		},
-		"-=9.9"
+		"-=9.8"
 	)
 	.to(
 		".animation-captions__item.caption--1",
@@ -92,28 +92,10 @@ scrollAnimation
 			duration: 0.5,
 			ease: "power3.inOut",
 		},
-		"-=9.2"
-	)
-	.to(
-		".animation-captions__item.caption--2",
-		{
-			opacity: 1,
-			duration: 0.7,
-			ease: "expo.inOut",
-		},
-		"-=9"
-	)
-	.to(
-		".animation-captions__item.caption--2",
-		{
-			opacity: 0,
-			duration: 0.5,
-			ease: "expo.inOut",
-		},
 		"-=8.2"
 	)
 	.to(
-		".animation-captions__item.caption--3",
+		".animation-captions__item.caption--2",
 		{
 			opacity: 1,
 			duration: 0.7,
@@ -122,13 +104,31 @@ scrollAnimation
 		"-=8"
 	)
 	.to(
+		".animation-captions__item.caption--2",
+		{
+			opacity: 0,
+			duration: 0.5,
+			ease: "expo.inOut",
+		},
+		"-=7.2"
+	)
+	.to(
+		".animation-captions__item.caption--3",
+		{
+			opacity: 1,
+			duration: 0.7,
+			ease: "expo.inOut",
+		},
+		"-=7"
+	)
+	.to(
 		".animation-captions__item.caption--3",
 		{
 			opacity: 0,
 			duration: 0.5,
 			ease: "expo.inOut",
 		},
-		"-=7.1"
+		"-=6.2"
 	)
 	.to(
 		".animation-captions__item.caption--4",
@@ -137,7 +137,7 @@ scrollAnimation
 			duration: 0.7,
 			ease: "expo.inOut",
 		},
-		"-=6.8"
+		"-=6"
 	)
 	.to(
 		".animation-captions__item.caption--4",
@@ -146,7 +146,7 @@ scrollAnimation
 			duration: 0.5,
 			ease: "expo.inOut",
 		},
-		"-=5.8"
+		"-=5.4"
 	)
 	.to(
 		".feature-captions h3",
