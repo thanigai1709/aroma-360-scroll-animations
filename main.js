@@ -199,7 +199,7 @@ scrollAnimation
 
 // Function to update the canvas frame
 function updateCanvasFrame(scrollData) {
-	let currentFrameIndex = Math.ceil(scrollData.progress * 100 * acceleration);
+	let currentFrameIndex = Math.floor(scrollData.progress * 100 * acceleration);
 	if (currentFrameIndex < frameCount) {
 		if (scrollData.direction === 1 && parseInt(scrollData.progress * 100) > 0) bufferImageSequence(currentFrameIndex);
 		console.log(currentFrameIndex, "current frame index");
@@ -229,11 +229,14 @@ if (history.scrollRestoration) {
 
 document.addEventListener("DOMContentLoaded", () => {
 	const lenis = new Lenis();
-	lenis.on("scroll", ScrollTrigger.update);
-	gsap.ticker.add((time) => {
-		lenis.raf(time * 1000);
+	lenis.on("scroll", (e) => {
+		// console.log(e);
 	});
-	gsap.ticker.lagSmoothing(0);
+	function raf(time) {
+		lenis.raf(time);
+		requestAnimationFrame(raf);
+	}
+	requestAnimationFrame(raf);
 	initializeCanvasAndAnimations();
 });
 
