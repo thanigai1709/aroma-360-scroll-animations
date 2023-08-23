@@ -200,7 +200,7 @@ scrollAnimation
 // Function to update the canvas frame
 function updateCanvasFrame(scrollData) {
 	let currentFrameIndex = Math.ceil(scrollData.progress * 100 * acceleration);
-	if (currentFrameIndex <= frameCount) {
+	if (currentFrameIndex < frameCount) {
 		if (scrollData.direction === 1 && parseInt(scrollData.progress * 100) > 0) bufferImageSequence(currentFrameIndex);
 		console.log(currentFrameIndex, "current frame index");
 		wirelessProAnimationState.frame = currentFrameIndex;
