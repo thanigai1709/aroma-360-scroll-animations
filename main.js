@@ -7,7 +7,7 @@ const canvas = document.getElementById("sequence-canvas");
 const context = canvas.getContext("2d");
 
 // Constants
-const frameCount = 479;
+const frameCount = 577;
 const img = new Image();
 const setting = document.querySelector(".setting button");
 let isAutoPlaying = false;
@@ -15,14 +15,14 @@ let autoScrollInterval;
 const images = [];
 const loadImages = [];
 let imageLoadedCount;
-let bufferThreshold = 150;
+let bufferThreshold = 200;
 const wirelessProAnimationState = {
 	frame: 0,
 };
-const acceleration = 5.15;
+const acceleration = 5.8;
 
 // Function to generate image URLs for frames
-const getFrameImageUrl = (index) => `https://storage.googleapis.com/wireless-pro-assets/sequence/img-${index + 1}.webp`;
+const getFrameImageUrl = (index) => `https://storage.googleapis.com/wireless-pro-assets/assets/img-${index + 1}.webp`;
 
 function initImageSequence() {
 	// Populating images
@@ -56,10 +56,10 @@ const scrollAnimation = gsap.timeline({
 	scrollTrigger: {
 		trigger: sequenceContainer,
 		pin: true,
-		anticipatePin: 1.5,
+		anticipatePin: 3,
 		start: "top top",
 		end: "+=20000",
-		scrub: 1.2,
+		scrub: 1,
 		onUpdate: (e) => updateCanvasFrame(e),
 	},
 });
@@ -185,23 +185,24 @@ scrollAnimation
 			duration: 1,
 			ease: "expo.inOut",
 		},
-		"-=0.8"
+		"-=0.7"
 	)
 	.to(
 		".animation-captions__item.caption--8",
 		{
 			opacity: 1,
-			duration: 0.9,
+			duration: 1,
 			ease: "expo.inOut",
 		},
-		"-=0.4"
+		"-=0.1"
 	);
 
 // Function to update the canvas frame
 function updateCanvasFrame(scrollData) {
 	let currentFrameIndex = Math.ceil(scrollData.progress * 100 * acceleration);
-	if (currentFrameIndex < frameCount) {
+	if (currentFrameIndex <= frameCount) {
 		if (scrollData.direction === 1 && parseInt(scrollData.progress * 100) > 0) bufferImageSequence(currentFrameIndex);
+		console.log(currentFrameIndex, "current frame index");
 		wirelessProAnimationState.frame = currentFrameIndex;
 	}
 }
