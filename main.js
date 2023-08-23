@@ -202,7 +202,7 @@ function updateCanvasFrame(scrollData) {
 	let currentFrameIndex = Math.floor(scrollData.progress * 100 * acceleration);
 	if (currentFrameIndex < frameCount) {
 		if (scrollData.direction === 1 && parseInt(scrollData.progress * 100) > 0) bufferImageSequence(currentFrameIndex);
-		console.log(currentFrameIndex, "current frame index");
+		// console.log(currentFrameIndex, "current frame index");
 		wirelessProAnimationState.frame = currentFrameIndex;
 	}
 }
