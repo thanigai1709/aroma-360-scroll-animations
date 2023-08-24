@@ -20,9 +20,15 @@ const wirelessProAnimationState = {
 	frame: 0,
 };
 const acceleration = 5.8;
+let assetSize = "desktop";
+let canvasSize = {
+	width: 1920,
+	height: 1080,
+};
 
 // Function to generate image URLs for frames
-const getFrameImageUrl = (index) => `https://storage.googleapis.com/wireless-pro-assets/assets/img-${index + 1}.webp`;
+const getFrameImageUrl = (index) =>
+	`https://storage.googleapis.com/wireless-pro-assets/${assetSize}/img-${index + 1}.webp`;
 
 function initImageSequence() {
 	// Populating images
@@ -33,6 +39,16 @@ function initImageSequence() {
 	}
 	imageLoadedCount = images.length;
 }
+
+(function () {
+	if (window.innerWidth > 1200) {
+		assetSize = "desktop";
+		canvasSize = { width: 1920, height: 1080 };
+	} else {
+		assetSize = "mobile";
+		canvasSize = { width: 1280, height: 720 };
+	}
+})();
 
 initImageSequence();
 
@@ -58,7 +74,7 @@ const scrollAnimation = gsap.timeline({
 		pin: true,
 		anticipatePin: 3,
 		start: "top top",
-		end: "+=20000",
+		end: "+=22000",
 		scrub: 1,
 		onUpdate: (e) => updateCanvasFrame(e),
 	},
@@ -216,8 +232,8 @@ function paintCanvasFrame() {
 
 // Function to initialize canvas and animations
 function initializeCanvasAndAnimations() {
-	canvas.width = 3840;
-	canvas.height = 2160;
+	canvas.width = canvasSize.width;
+	canvas.height = canvasSize.height;
 	paintCanvasFrame();
 	initializeStartPosition();
 	playOpeningAnimations();
