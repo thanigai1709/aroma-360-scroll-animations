@@ -63,7 +63,7 @@ body::-webkit-scrollbar {
 	opacity: 0.8;
 }
 
-@media screen and (max-width: 1740px) {
+@media screen and (max-width: 1919px) {
 	.animation-seq__canvas {
 		object-fit: cover;
 	}
