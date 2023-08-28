@@ -20,7 +20,7 @@ const wirelessProAnimationState = {
 	frame: 0,
 };
 const acceleration = 5.8;
-let assetSize = "desktop";
+let assetSize = "desktop-v2";
 let canvasSize = {
 	width: 1920,
 	height: 1080,
@@ -42,7 +42,7 @@ function initImageSequence() {
 
 (function () {
 	if (window.innerWidth > 1200) {
-		assetSize = "desktop";
+		assetSize = "desktop-v2";
 		canvasSize = { width: 1920, height: 1080 };
 	} else {
 		assetSize = "mobile";
